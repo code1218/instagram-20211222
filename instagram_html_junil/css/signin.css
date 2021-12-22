@@ -1,0 +1,21 @@
+article {
+    margin: 32px auto 0px;
+    padding: 0px 0px 32px;
+    display: flex;
+    width: 935px;
+}
+
+.si-title-img {
+    display: flex;
+    align-items: center;
+}
+
+.si-items {
+    margin: 12px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 350px;
+    height: 704px;
+}
