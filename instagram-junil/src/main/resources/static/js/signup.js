@@ -5,6 +5,21 @@
 const signupInputs = document.querySelectorAll('.su-input');
 const submitBtns = document.querySelectorAll('.su-submit-btn');
 
+function signupValidMsg(data){
+	let signupDataObj = JSON.parse(data);
+	if(signupDataObj.code == 400){
+		alert(
+			'유효성 검사 오류.\n' + 
+			'오류코드: ' + signupDataObj.code + '\n' +
+			'오류 내용\n' +
+			'email: ' + signupDataObj.data.email + '\n' +
+			'name: ' + signupDataObj.data.name + '\n' +
+			'username: ' + signupDataObj.data.username + '\n' +
+			'password: ' + signupDataObj.data.password
+		);
+	}
+}
+
 function signup() {
 	let signupObj = {
 		email: signupInputs[0].value,
@@ -19,7 +34,7 @@ function signup() {
 		data: signupObj,
 		dataType: "text",
 		success: function(data) {
-			
+			signupValidMsg(data);
 		},
 		error: function(){
 			alert('비동기 처리 오류.');
