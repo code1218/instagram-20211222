@@ -34,6 +34,7 @@ function signupValidMsg(data){
 		);
 	}else if(signupDataObj.code == 200){
 		alert(signupDataObj.data);
+		location.replace('/auth/signin');
 	}
 }
 

@@ -3,6 +3,8 @@ package com.springboot.instagram.web.dto.auth;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.springboot.instagram.domain.user.User;
 
 import lombok.Data;
@@ -24,7 +26,7 @@ public class SignupReqDto {
 				.email(email)
 				.name(name)
 				.username(username)
-				.password(password)
+				.password(new BCryptPasswordEncoder().encode(password))
 				.build();
 	}
 }

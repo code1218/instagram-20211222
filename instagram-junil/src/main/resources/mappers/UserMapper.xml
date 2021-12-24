@@ -12,6 +12,29 @@
 		where
 			username = #{username};
 	</select>
+	
+	<insert id="insertUser" parameterType="com.springboot.instagram.domain.user.User">
+		insert into 
+			user_mst
+		values(
+			0,
+			#{email},
+			#{name},
+			#{username},
+			#{password},
+			now(),
+			now()
+		);
+	</insert>
+	
+	<select id="getUserByUsername" resultType="com.springboot.instagram.domain.user.User" parameterType="String">
+		select
+			*
+		from
+			user_mst
+		where
+			username = #{username};
+	</select>
 </mapper>
 
 

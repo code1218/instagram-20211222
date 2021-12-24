@@ -40,6 +40,8 @@ public class AuthServiceImpl implements AuthService{
 			
 			if(checkUsernameResult == 0) {
 				// 회원가입 가능
+				User userEntity = signupReqDto.toEntity();
+				userRepository.insertUser(userEntity);
 				signupRespDto.setCode(200);
 				signupRespDto.setData("회원가입 성공.");
 			}else {
