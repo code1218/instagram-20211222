@@ -1,5 +1,6 @@
 package com.springboot.instagram.config.auth;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -22,8 +23,17 @@ public class PrincipalDetails implements UserDetails{
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		
-		return null;
+		Collection<GrantedAuthority> collection = new ArrayList<GrantedAuthority>();
+		collection.add(new GrantedAuthority() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public String getAuthority() {
+				return user.getRole();
+			}
+		});
+		return collection;
 	}
 
 	@Override

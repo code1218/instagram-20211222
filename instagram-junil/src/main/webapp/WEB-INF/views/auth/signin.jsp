@@ -28,10 +28,10 @@
                         <div class="si-login-form">
                         	<form action="/auth/signin" method="post">
                         		<div class="si-item">
-	                                <input type="text" class="si-input" placeholder="전화번호, 사용자 이름, 또는 이메일">
+	                                <input type="text" class="si-input" name="username" placeholder="전화번호, 사용자 이름, 또는 이메일">
 	                            </div>
 	                            <div class="si-item">
-	                                <input type="password" class="si-input" placeholder="비밀번호">
+	                                <input type="password" class="si-input" name="password" placeholder="비밀번호">
 	                            </div>
 	                            <div class="si-item">
 	                                <button class="si-submit-btn">로그인</button>
