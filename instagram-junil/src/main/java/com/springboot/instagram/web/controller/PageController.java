@@ -11,9 +11,7 @@ public class PageController {
 	
 	@GetMapping({"/", "/index"})
 	public String indexForm(@AuthenticationPrincipal PrincipalDetails principalDetails) {
-		System.out.println(principalDetails.getUser());
-		System.out.println(principalDetails.getUser().getId());
-		return "test";
+		return "index";
 	}
 	
 	@GetMapping("/auth/signin")
@@ -25,5 +23,11 @@ public class PageController {
 	public String signupForm() {
 		return "auth/signup";
 	}
+	
+	@GetMapping("/accounts/edit")
+	public String accountsEditForm(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+		return "accounts/accounts_edit";
+	}
+	
 	
 }
