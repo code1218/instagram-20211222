@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.springboot.instagram.domain.user.User;
+import com.springboot.instagram.domain.user.UserDtl;
 import com.springboot.instagram.domain.user.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,8 @@ public class PrincipalDetailsService implements UserDetailsService{
 		if(userEntity == null) {
 			return null;
 		}else {
-			return new PrincipalDetails(userEntity);
+			UserDtl userDtlEntity = userRepository.getUserDtlById(userEntity.getId());
+			return new PrincipalDetails(userEntity, userDtlEntity);
 		}
 	}
 }

@@ -34,10 +34,11 @@
                 <article>
                     <div class="edit-profile-img">
                         <div class="edit-profile-img-border">
-                            <img src="/image/profile_img/default.png">
+                            <img src="/image/${principal.userDtl.profile_img }">
                         </div>
                         <div class="username-lb">
                             <h1>${principal.user.username }</h1>
+                            <input type="file" id="file" name="file">
                             <div class="profile-img-change-btn">프로필 사진 바꾸기</div>
                         </div>
                     </div>
@@ -63,7 +64,7 @@
                                 <label for="website-ip" class="edit-lb">웹사이트</label>
                             </aside>
                             <div class="edit-ip">
-                                <input type="text" id="website-ip" name="website">
+                                <input type="text" id="website-ip" name="website" value="${principal.userDtl.website }">
                             </div>
                         </div>
                         <div class="edit-items">
@@ -71,7 +72,7 @@
                                 <label for="introduction-ip" class="edit-lb">소개</label>
                             </aside>
                             <div class="edit-ip">
-                                <textarea id="introduction-ip" name="introduction"></textarea>
+                                <textarea id="introduction-ip" name="introduction">${principal.userDtl.introduction }</textarea>
                             </div>
                         </div>
                         <div class="edit-items">
@@ -87,7 +88,7 @@
                                 <label for="phone-ip" class="edit-lb">전화번호</label>
                             </aside>
                             <div class="edit-ip">
-                                <input type="text" id="phone-ip" name="phone">
+                                <input type="text" id="phone-ip" name="phone"  value="${principal.userDtl.phone }">
                             </div>
                         </div>
                         <div class="edit-items">
@@ -95,12 +96,12 @@
                                 <label for="gender-ip" class="edit-lb">성별</label>
                             </aside>
                             <div class="edit-ip">
-                                <input type="text" list="gender-ip" name="gender">
+                                <input type="text" list="gender-ip" name="gender"  value="${principal.userDtl.gender }">
                                 <datalist id="gender-ip">
-                                    <option value="1">남성</option>
-                                    <option value="2">여성</option>
-                                    <option value="3">맞춤성별</option>
-                                    <option value="4">밝히고 싶지 않음</option>
+                                    <option value="남성"></option>
+                                    <option value="여성"></option>
+                                    <option value="맞춤성별"></option>
+                                    <option value="밝히고 싶지 않음"></option>
                                 </datalist>
                             </div>
                         </div>
@@ -116,6 +117,7 @@
             </div>
         </main>
     </section>
+    <script src="/js/accounts_edit.js"></script>
 </body>
 
 </html>

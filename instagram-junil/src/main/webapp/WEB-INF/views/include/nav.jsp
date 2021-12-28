@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var="principal"/>
+</sec:authorize>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +17,7 @@
 		<nav class="nav-bar">
             <div class="nav-main">
                 <div class="nav-logo">
-                    <a href="#">
+                    <a href="/">
                         <img src="/images/instagram_logo.PNG">
                     </a>
                 </div>
@@ -29,9 +35,11 @@
                         <i class="far fa-plus-square" id="nav-plus-icon"></i>
                     </div>
                     <div class="nav-item">
-                        <div class="nav-items-profile">
-                            <img src="/images/signin_title.PNG">
-                        </div>
+                    	<a href="/accounts/edit">
+                    		<div class="nav-items-profile">
+	                            <img src="/image/${principal.userDtl.profile_img }">
+	                        </div>
+                    	</a>
                     </div>
                 </div>
             </div>

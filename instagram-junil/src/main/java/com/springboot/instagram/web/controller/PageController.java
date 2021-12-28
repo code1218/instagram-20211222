@@ -11,7 +11,7 @@ import com.springboot.instagram.config.auth.PrincipalDetails;
 public class PageController {
 	
 	@GetMapping({"/", "/index"})
-	public String indexForm(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public String indexForm() {
 		return "index";
 	}
 	
@@ -26,8 +26,7 @@ public class PageController {
 	}
 	
 	@GetMapping("/accounts/edit")
-	public String accountsEditForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-		model.addAttribute("key", "data");
+	public String accountsEditForm() {
 		return "accounts/accounts_edit";
 	}
 	
