@@ -34,7 +34,7 @@
                 <article>
                     <div class="edit-profile-img">
                         <div class="edit-profile-img-border">
-                            <img src="/images/signin_title.PNG">
+                            <img src="/image/profile_img/default.png">
                         </div>
                         <div class="username-lb">
                             <h1>${principal.user.username }</h1>
