@@ -60,6 +60,7 @@
                         </div>
                         <div class="username-lb">
                             <h1>junil</h1>
+                            <input type="file" id="file" name="file">
                             <div class="profile-img-change-btn">프로필 사진 바꾸기</div>
                         </div>
                     </div>
@@ -138,6 +139,19 @@
             </div>
         </main>
     </section>
+    <script>
+        const file = document.querySelector('#file');
+        const btn = document.querySelector('.profile-img-change-btn');
+
+        btn.onclick = () => {
+            file.click();
+        }
+
+        file.onchange = () => {
+            alert('test');
+        }
+
+    </script>
 </body>
 
 </html>

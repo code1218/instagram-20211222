@@ -2,6 +2,7 @@ package com.springboot.instagram.web.controller;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.springboot.instagram.config.auth.PrincipalDetails;
@@ -25,7 +26,8 @@ public class PageController {
 	}
 	
 	@GetMapping("/accounts/edit")
-	public String accountsEditForm(@AuthenticationPrincipal PrincipalDetails principalDetails) {
+	public String accountsEditForm(Model model, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		model.addAttribute("key", "data");
 		return "accounts/accounts_edit";
 	}
 	
