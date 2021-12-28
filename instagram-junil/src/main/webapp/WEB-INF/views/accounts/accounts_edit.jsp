@@ -16,6 +16,7 @@
     <title>Instagram</title>
     <link rel="stylesheet" href="/css/accounts_menu.css">
     <link rel="stylesheet" href="/css/accounts_edit.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
 <body>
@@ -34,15 +35,15 @@
                 <article>
                     <div class="edit-profile-img">
                         <div class="edit-profile-img-border">
-                            <img src="/image/${principal.userDtl.profile_img }">
+                            <img id="profile-img" src="/image/${principal.userDtl.profile_img }">
                         </div>
                         <div class="username-lb">
-                            <h1>${principal.user.username }</h1>
-                            <input type="file" id="file" name="file">
+                            <h1 id="principal-username">${principal.user.username }</h1>
                             <div class="profile-img-change-btn">프로필 사진 바꾸기</div>
                         </div>
                     </div>
-                    <form action="">
+                    <form enctype="multipart/form-data">
+                    	<input type="file" id="file" name="file">
                         <div class="edit-items">
                             <aside>
                                 <label for="name-ip" class="edit-lb">이름</label>
