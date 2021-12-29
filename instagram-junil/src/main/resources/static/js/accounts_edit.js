@@ -1,6 +1,7 @@
 /**
  * 프로필 수정
  */
+const principalUsername = document.querySelector('#principal-username');
 
 const profileImg = document.querySelector('#profile-img');
 const imgFile = document.querySelector('#file');
@@ -82,7 +83,10 @@ function editSubmit() {
 		},
 		dataType: "text",
 		success: function(data) {
-			
+			if(data == 'true'){
+				alert('회원정보 수정 성공.');
+				principalUsername.textContent = profileInput[1].value;
+			}
 		},
 		error: function(){
 			alert('비동기 처리 오류.');
@@ -91,7 +95,7 @@ function editSubmit() {
 }
 
 submitBtn.onclick = () => {
-	const principalUsername = document.querySelector('#principal-username');
+	
 	let username = profileInput[1].value;
 	let pUsername = principalUsername.textContent;
 	

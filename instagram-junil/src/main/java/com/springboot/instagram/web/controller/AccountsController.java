@@ -24,9 +24,8 @@ public class AccountsController {
 	}
 	
 	@PutMapping("/accounts/edit")
-	public Object profileEdit(@AuthenticationPrincipal PrincipalDetails principalDetails, ProfileReqDto profileReqDto) {
-		accountsService.updateUser(principalDetails, profileReqDto);
-		return null;
+	public boolean profileEdit(@AuthenticationPrincipal PrincipalDetails principalDetails, ProfileReqDto profileReqDto) {
+		return accountsService.updateUser(principalDetails, profileReqDto);
 	}
 	
 	

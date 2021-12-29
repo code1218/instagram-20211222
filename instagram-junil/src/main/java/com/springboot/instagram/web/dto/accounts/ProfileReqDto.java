@@ -19,9 +19,10 @@ public class ProfileReqDto {
 	
 	private MultipartFile file;
 	
-	public User toUserEntity(int id) {
+	public User toUserEntity(int id, String password) {
 		return User.builder()
 				.id(id)
+				.password(password)
 				.email(email)
 				.name(name)
 				.username(username)

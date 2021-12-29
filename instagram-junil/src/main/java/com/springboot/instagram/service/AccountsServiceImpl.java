@@ -32,8 +32,10 @@ public class AccountsServiceImpl implements AccountsService{
 	public boolean updateUser(PrincipalDetails principalDetails, ProfileReqDto profileReqDto) {
 		if(profileReqDto.getFile() == null) {
 			int id = principalDetails.getUser().getId();
+			String password = principalDetails.getUser().getPassword();
 			String profile_img = principalDetails.getUserDtl().getProfile_img();
-			User userEntity = profileReqDto.toUserEntity(id);
+			
+			User userEntity = profileReqDto.toUserEntity(id, password);
 			UserDtl userDtlEntity = profileReqDto.toUserDtlEntity(id, profile_img);
 			
 			int result = 0;
@@ -42,6 +44,8 @@ public class AccountsServiceImpl implements AccountsService{
 			result += userRepository.updateUserDtlById(userDtlEntity);
 			
 			if(result == 2) {
+				principalDetails.setUser(userEntity);
+				principalDetails.setUserDtl(userDtlEntity);
 				return true;
 			}else {
 				return false;
