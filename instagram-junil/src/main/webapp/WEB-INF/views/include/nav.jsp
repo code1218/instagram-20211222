@@ -37,7 +37,7 @@
                     <div class="nav-item">
                     	<a href="/accounts/edit">
                     		<div class="nav-items-profile">
-	                            <img src="/image/${principal.userDtl.profile_img }">
+	                            <img id="nav-profile-img" src="/image/${principal.userDtl.profile_img }">
 	                        </div>
                     	</a>
                     </div>

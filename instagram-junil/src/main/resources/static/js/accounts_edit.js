@@ -14,9 +14,11 @@ const profilelabel = document.querySelectorAll('.edit-lb');
 const profileInput = document.querySelectorAll('.profile-ip');
 
 
-var usernameCheckResult = true;
+var usernameCheckResult = 'true';
 
 var imgFileChangeFlag = false;
+
+var profileImgFile = '';
 
 imgFile.style.display = 'none';
 
@@ -29,7 +31,8 @@ imgFile.onchange = () => {
 	
 	reader.onload = (e) => {
 		imgFileChangeFlag = true;
-		profileImg.src = e.target.result;
+		profileImgFile = e.target.result;
+		profileImg.src = profileImgFile;
 	}
 	
 	reader.readAsDataURL(imgFile.files[0]);
@@ -65,7 +68,27 @@ function inputIsEmpty(str, lb) {
 }
 
 function multipartSubmit() {
+	let formData = new FormData(form);
 	
+	$.ajax({
+		type: "put",
+		url: "/accounts/edit",
+		data: formData,
+		dataType: "text",
+		enctype: "multipart/form-data",
+		processData: false,
+		contentType: false,
+		success: function(data){
+			if(data == 'true'){
+				alert('회원정보 수정 성공.');
+				const navProfileImg = document.querySelector('#nav-profile-img');
+				navProfileImg.src = profileImgFile;
+			}
+		},
+		error: function(){
+			alert('비동기 처리 오류.');
+		}
+	});
 }
 
 function editSubmit() {
@@ -91,7 +114,7 @@ function editSubmit() {
 		error: function(){
 			alert('비동기 처리 오류.');
 		}
-	})
+	});
 }
 
 submitBtn.onclick = () => {
