@@ -42,6 +42,7 @@ function usernameCheck(username) {
 			"username": username
 		},
 		dataType: "text",
+		async: false,
 		success: function(data){
 			usernameCheckResult = data;
 		},
@@ -67,13 +68,32 @@ function multipartSubmit() {
 }
 
 function editSubmit() {
-	
+	$.ajax({
+		type: "put",
+		url: "/accounts/edit",
+		data: {
+			"name": profileInput[0].value,
+			"username": profileInput[1].value,
+			"website": profileInput[2].value,
+			"introduction": profileInput[3].value,
+			"email": profileInput[4].value,
+			"phone": profileInput[5].value,
+			"gender": profileInput[6].value
+		},
+		dataType: "text",
+		success: function(data) {
+			
+		},
+		error: function(){
+			alert('비동기 처리 오류.');
+		}
+	})
 }
 
 submitBtn.onclick = () => {
 	const principalUsername = document.querySelector('#principal-username');
 	let username = profileInput[1].value;
-	let pUsername = principalUsername.contextContent;
+	let pUsername = principalUsername.textContent;
 	
 	if(inputIsEmpty(profileInput[0].value, profilelabel[0].textContent)){
 		return;
@@ -90,7 +110,7 @@ submitBtn.onclick = () => {
 		usernameCheck(username);
 	}
 	
-	if(usernameCheckResult == true){
+	if(usernameCheckResult == 'true'){
 		//서브밋 실행
 		if(imgFileChangeFlag == true){
 			//파일업로드 필요 o
@@ -99,6 +119,8 @@ submitBtn.onclick = () => {
 			//파일업로드 필요 x
 			editSubmit();
 		}
+	}else{
+		alert(username + "은(는) 이미 사용중인 사용자 이름입니다.");
 	}
 }
 
