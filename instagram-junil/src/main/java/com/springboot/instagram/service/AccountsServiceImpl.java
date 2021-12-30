@@ -14,6 +14,8 @@ import com.springboot.instagram.config.auth.PrincipalDetails;
 import com.springboot.instagram.domain.user.User;
 import com.springboot.instagram.domain.user.UserDtl;
 import com.springboot.instagram.domain.user.UserRepository;
+import com.springboot.instagram.web.dto.accounts.PasswordReqDto;
+import com.springboot.instagram.web.dto.accounts.PasswordRespDto;
 import com.springboot.instagram.web.dto.accounts.ProfileReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -95,6 +97,18 @@ public class AccountsServiceImpl implements AccountsService{
 		}else {
 			return false;
 		}
+	}
+	
+	public boolean prePasswordCheck(String principalPassword, String prePassword) {
+		boolean result = false;
+		
+		return result;
+	}
+
+	@Override
+	public PasswordRespDto updatePassword(PrincipalDetails principalDetails, PasswordReqDto passwordReqDto) {
+		
+		return null;
 	}
 
 }

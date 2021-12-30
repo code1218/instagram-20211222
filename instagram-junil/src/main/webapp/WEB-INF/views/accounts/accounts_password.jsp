@@ -1,3 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var="principal"/>
+</sec:authorize>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -6,60 +14,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/nav.css">
     <link rel="stylesheet" href="/css/accounts_menu.css">
     <link rel="stylesheet" href="/css/accounts_password.css">
-    <script src="https://kit.fontawesome.com/c3df4d7d1c.js" crossorigin="anonymous"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
 <body>
     <section>
-        <nav class="nav-bar">
-            <div class="nav-main">
-                <div class="nav-logo">
-                    <a href="#">
-                        <img src="/images/instagram_logo.PNG">
-                    </a>
-                </div>
-                <div class="nav-search">
-                    <div class="nav-search-border">
-                        <i class="fas fa-search"></i>
-                        <input type="text" class="nav-search-ip" placeholder="검색">
-                    </div>
-                </div>
-                <div class="nav-items">
-                    <div class="nav-item">
-                        <i class="fas fa-home" id="nav-home-icon"></i>
-                    </div>
-                    <div class="nav-item">
-                        <i class="far fa-plus-square" id="nav-plus-icon"></i>
-                    </div>
-                    <div class="nav-item">
-                        <div class="nav-items-profile">
-                            <img src="/images/signin_title.PNG">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
+        <jsp:include page="../include/nav.jsp"></jsp:include>
         <main>
             <div class="container">
                 <ul class="menu-list">
                     <li class="menu-li">
-                        <a href="#" class="menu-li-a">프로필 편집</a>
+                        <a href="/accounts/edit" class="menu-li-a">프로필 편집</a>
                     </li>
                     <li class="menu-li">
-                        <a href="#" class="menu-li-a-select">비밀번호 변경</a>
+                        <a href="/accounts/password/change" class="menu-li-a-select">비밀번호 변경</a>
                     </li>
                 </ul>
                 <article>
                     <div class="password-profile-img">
                         <div class="password-profile-img-border">
-                            <img src="/images/signin_title.PNG">
+                            <img src="/image/${principal.userDtl.profile_img }">
                         </div>
                         <div class="username-lb">
-                            <h1>junil</h1>
+                            <h1>${principal.user.username }</h1>
                         </div>
                     </div>
                     <div class="password-items">
@@ -97,6 +76,7 @@
             </div>
         </main>
     </section>
+    <script src="/js/accounts_password.js"></script>
 </body>
 
 </html>

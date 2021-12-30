@@ -30,5 +30,10 @@ public class PageController {
 		return "accounts/accounts_edit";
 	}
 	
+	@GetMapping("/accounts/password/change")
+	public String accountsPasswordForm() {
+		return "accounts/accounts_password";
+	}
+	
 	
 }
