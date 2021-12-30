@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.springboot.instagram.config.auth.PrincipalDetails;
@@ -99,16 +100,37 @@ public class AccountsServiceImpl implements AccountsService{
 		}
 	}
 	
-	public boolean prePasswordCheck(String principalPassword, String prePassword) {
-		boolean result = false;
-		
-		return result;
+	public boolean passwordCheck(String principalPassword, String password) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder.matches(password, principalPassword);// 매개변수 순서: 암호화되지 않은 값, 기존의 암호화된 값
 	}
 
 	@Override
 	public PasswordRespDto updatePassword(PrincipalDetails principalDetails, PasswordReqDto passwordReqDto) {
+		boolean prePasswordCheckFlag = passwordCheck(principalDetails.getPassword(), passwordReqDto.getPrePassword());
+		boolean newPasswordCheckFlag = passwordCheck(principalDetails.getPassword(), passwordReqDto.getNewPassword());
+		PasswordRespDto passwordRespDto = new PasswordRespDto();
 		
-		return null;
+		if(prePasswordCheckFlag == false) {
+			// 이전 비밀번호가 일치하지 않음
+			passwordRespDto.setCode(450);
+			passwordRespDto.setMessage("이전 비밀번호가 일치하지 않습니다.");
+		}else if(newPasswordCheckFlag == true) {
+			// 새 비밀번호가 이전 비밀번호와 동일
+			passwordRespDto.setCode(451);
+			passwordRespDto.setMessage("새 비밀번호가 이전 비밀번호와 동일합니다.");
+		}else {
+			// 새 비밀번호로 변경
+			User userEntity = passwordReqDto.toEntity(principalDetails.getUser().getId());
+			int result = userRepository.updatePasswordById(userEntity);
+			if(result == 1) {
+				passwordRespDto.setCode(200);
+				passwordRespDto.setMessage("새 비밀번호로 변경되었습니다.");
+				principalDetails.getUser().setPassword(userEntity.getPassword());
+			}
+		}
+		
+		return passwordRespDto;
 	}
 
 }

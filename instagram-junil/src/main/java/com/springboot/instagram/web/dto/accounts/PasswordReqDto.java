@@ -1,5 +1,7 @@
 package com.springboot.instagram.web.dto.accounts;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import com.springboot.instagram.domain.user.User;
 
 import lombok.Data;
@@ -12,7 +14,7 @@ public class PasswordReqDto {
 	public User toEntity(int id) {
 		return User.builder()
 				.id(id)
-				.password(newPassword)
+				.password(new BCryptPasswordEncoder().encode(newPassword))
 				.build();
 	}
 }

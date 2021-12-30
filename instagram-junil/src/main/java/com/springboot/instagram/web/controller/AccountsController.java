@@ -31,7 +31,7 @@ public class AccountsController {
 	
 	@PutMapping("/accounts/password/change")
 	public Object passwordChange(@AuthenticationPrincipal PrincipalDetails principalDetails, PasswordReqDto passwordReqDto) {
-		return null;
+		return accountsService.updatePassword(principalDetails, passwordReqDto);
 	}
 	
 }

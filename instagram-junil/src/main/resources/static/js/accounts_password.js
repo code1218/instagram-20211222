@@ -17,7 +17,13 @@ function passwordSubmit() {
 		},
 		dataType: "text",
 		success: function(data){
+			let passwordRespObj = JSON.parse(data);
+			alert(passwordRespObj.message);
 			
+			if(passwordRespObj.code == 200) {
+				alert('다시 로그인 하세요.');
+				location.replace('/logout');
+			}
 		},
 		error: function(){
 			alert('비동기 처리 오류.');
