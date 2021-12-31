@@ -60,7 +60,10 @@ function uploadSubmit() {
 		processData: false,
 		contentType: false,
 		success: function(data){
-			
+			if(data == 'true'){
+				alert('게시글 작성 완료');
+				location.replace("/");
+			}
 		},
 		error: function(){
 			alert('비동기 처리 오류.');
