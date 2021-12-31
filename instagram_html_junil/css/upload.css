@@ -18,6 +18,7 @@
 }
 
 .img-preview {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,6 +29,19 @@
 
 .upload-img {
     max-width: 600px;
+}
+
+#img-delete-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2em;
+    color: rgba(41, 41, 41, 0.5);
+    cursor: pointer;
+}
+
+#img-delete-btn:hover {
+    color: rgba(0, 0, 0, 0.8);
 }
 
 .img-add {
@@ -57,6 +71,64 @@
 }
 
 .img-article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
     width: 335px;
     height: 600px;
+}
+
+.profile-info {
+    display: flex;
+    width: 100%;
+}
+.profile-img-border {
+    margin: 0px 5px;
+    border: 0px;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 30px;
+    height: 30px;
+}
+
+.profile-img-border img {
+    max-width: 30px;
+}
+
+.username-lb {
+    display: flex;
+    align-items: flex-end;
+    margin: 0px 10px;
+    padding: 0px 0px 5px;
+}
+
+.username-lb h1 {
+    font-size: 1.1em;
+    font-weight: 500;
+    color: #666666;
+}
+
+.upload-content {
+    margin: 10px 0px 0px;
+    width: 315px;
+    height: 480px;
+    max-height: auto;
+    overflow-y: scroll;
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+.upload-submit-btn {
+    padding: 10px;
+    font-size: 1.1em;
+    font-weight: 700;
+    color: #0094f6c2;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.upload-submit-btn:hover {
+    color: #0095f6;
 }
