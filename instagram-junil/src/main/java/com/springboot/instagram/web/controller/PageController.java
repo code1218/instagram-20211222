@@ -35,5 +35,9 @@ public class PageController {
 		return "accounts/accounts_password";
 	}
 	
+	@GetMapping("/upload")
+	public String uploadForm() {
+		return "upload/upload";
+	}
 	
 }
