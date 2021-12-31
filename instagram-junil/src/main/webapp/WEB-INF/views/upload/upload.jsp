@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instagram</title>
     <link rel="stylesheet" href="/css/upload.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://kit.fontawesome.com/c3df4d7d1c.js" crossorigin="anonymous"></script>
 </head>
 
@@ -46,7 +47,7 @@
                             </div>
                         </div>
                         <div class="upload-content-border">
-                            <textarea class="upload-content" name=""></textarea>
+                            <textarea class="upload-content" name="boardContent"></textarea>
                         </div>
                         <div class="upload-submit-btn">공유하기</div>
                     </article>

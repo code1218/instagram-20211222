@@ -29,7 +29,7 @@ addImgBtn.onclick = () => {
 imgDeleteBtn.onclick = () => {
     uploadFile.value = '';
     uploadFile.files[0] = null;
-    uploadImg.src = '';
+    uploadImg.removeAttribute('src');
     imgPreview.style.display = 'none';
     imgAdd.style.display = 'flex';
 }
