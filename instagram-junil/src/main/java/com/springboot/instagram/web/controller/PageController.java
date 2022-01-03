@@ -1,14 +1,17 @@
 package com.springboot.instagram.web.controller;
 
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
-import com.springboot.instagram.config.auth.PrincipalDetails;
+import com.springboot.instagram.service.BoardService;
 
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Controller
 public class PageController {
+	private final BoardService boardService;
 	
 	@GetMapping({"/", "/index"})
 	public String indexForm() {
@@ -39,5 +42,12 @@ public class PageController {
 	public String uploadForm() {
 		return "upload/upload";
 	}
+	
+	@GetMapping("/{username}")
+	public String profileForm(@PathVariable String username) {
+		boardService.getProfileBoard(username);
+		return "profile/my_profile";
+	}
+	
 	
 }

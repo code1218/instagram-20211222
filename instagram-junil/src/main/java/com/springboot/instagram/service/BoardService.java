@@ -5,4 +5,5 @@ import com.springboot.instagram.web.dto.board.BoardReqDto;
 
 public interface BoardService {
 	public boolean insertBoard(PrincipalDetails principalDetails, BoardReqDto boardReqDto);
+	public void getProfileBoard(String username);
 }

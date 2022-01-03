@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.springboot.instagram.config.auth.PrincipalDetails;
 import com.springboot.instagram.domain.board.Board;
 import com.springboot.instagram.domain.board.BoardRepository;
+import com.springboot.instagram.domain.board.ProfileBoard;
 import com.springboot.instagram.web.dto.board.BoardReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -56,5 +58,11 @@ public class BoardServiceImpl implements BoardService{
 		
 	}
 
-	
+	@Override
+	public void getProfileBoard(String username) {
+		List<ProfileBoard> boardList = boardRepository.getProfileBoardByUsername(username);
+		for(ProfileBoard board : boardList) {
+			System.out.println(board);
+		}
+	}
 }
