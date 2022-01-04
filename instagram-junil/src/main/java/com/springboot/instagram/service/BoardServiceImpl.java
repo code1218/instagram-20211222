@@ -16,6 +16,7 @@ import com.springboot.instagram.domain.board.Board;
 import com.springboot.instagram.domain.board.BoardRepository;
 import com.springboot.instagram.domain.board.ProfileBoard;
 import com.springboot.instagram.web.dto.board.BoardReqDto;
+import com.springboot.instagram.web.dto.profile.ProfileRespDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -59,10 +60,10 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void getProfileBoard(String username) {
-		List<ProfileBoard> boardList = boardRepository.getProfileBoardByUsername(username);
-		for(ProfileBoard board : boardList) {
-			System.out.println(board);
-		}
+	public ProfileRespDto getProfileBoard(String username) {
+		List<ProfileBoard> boardList = boardRepository.getProfileBoardListByUsername(username);
+		ProfileRespDto profileRespDto = new ProfileRespDto();
+		profileRespDto.setBoardTotalCount(boardList.size());
+		return profileRespDto;
 	}
 }

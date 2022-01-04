@@ -17,7 +17,7 @@
 		);
 	</insert>
 	
-	<select id="getProfileBoardByUsername" resultType="com.springboot.instagram.domain.board.ProfileBoard" parameterType="String">
+	<select id="getProfileBoardListByUsername" resultType="com.springboot.instagram.domain.board.ProfileBoard" parameterType="String">
 		SELECT
 			bm.id,
 			bm.board_img,
@@ -31,7 +31,8 @@
 		WHERE
 			um.username = #{username}
 		ORDER BY
-			update_date desc;
+			bm.update_date desc,
+			bm.id desc;
 	</select>
 </mapper>
 
