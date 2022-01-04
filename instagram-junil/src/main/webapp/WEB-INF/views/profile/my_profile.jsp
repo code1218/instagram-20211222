@@ -60,7 +60,7 @@
     </div>
     
     <input type="hidden" id="username" value="${profileRespDto.username }">
-    
+    <input type="hidden" id="board-total-count" value="${profileRespDto.boardTotalCount }">
     <script src="/js/my_profile.js"></script>
 </body>
 

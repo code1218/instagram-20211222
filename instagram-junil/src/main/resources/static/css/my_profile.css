@@ -124,8 +124,12 @@ section {
 
 .board-item {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 290px;
     height: 290px;
+    background-color: #dbdbdb;
     overflow: hidden;
     cursor: pointer;
 }

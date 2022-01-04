@@ -72,13 +72,16 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public ProfileBoardRespDto getProfileBoard(String username, int page) {
 		List<ProfileBoard> boardListAll = boardRepository.getProfileBoardListByUsername(username);
+		
 		List<List<ProfileBoard>> boardGroup = new ArrayList<List<ProfileBoard>>();
 		int boardListTotalCount = boardListAll.size();
 		int groupSize = (boardListTotalCount % 3) == 0 ? boardListTotalCount / 3 : (boardListTotalCount / 3) + 1 ;
 		
-		int j = 0;
+		int startIndex = page * 3;
+		int endIndex = startIndex + 3;
+		int j = startIndex * 3;
 		
-		for(int i = 0; i < groupSize; i++) {
+		for(int i = startIndex; i < endIndex && i < groupSize; i++) {
 			List<ProfileBoard> boardList = new ArrayList<ProfileBoard>();
 			for(; j < (i+1) * 3 && j < boardListTotalCount; j++) {
 				boardList.add(boardListAll.get(j));

@@ -4,16 +4,21 @@ const modalBtns = modalContainer.querySelectorAll('button');
 const settingBtn = document.querySelector('#setting-btn');
 const usernameObj = document.querySelector('#username');
 const boardContainer = document.querySelector('.board-container');
+const boardTotalCount = document.querySelector('#board-total-count');
 
 var page = 0;
 var username = usernameObj.value;
+var boardGroupItem = ``;
+var boardTotal = boardTotalCount.value;
 
-/*window.onscroll = () => {
-	console.log('window_scrollTop: ' + $(window).scrollTop());
-	console.log('window_height: ' + $(window).height());
-	console.log('document_height: ' + $(document).height());
-	console.log($(document).height()-$(window).height()-$(window).scrollTop());
-}*/
+window.onscroll = () => {
+	let checkNum = $(document).height()-$(window).height()-$(window).scrollTop();
+	
+	if(checkNum < 1 && checkNum > -1 && boardTotal > (page+1)*9) {
+		page++;
+		boardLoad();
+	}
+}
 
 boardLoad();
 
@@ -24,7 +29,7 @@ function boardLoad() {
 		dataType: "text",
 		success: function(data){
 			let boardGroupObj = JSON.parse(data);
-			let boardGroupItem = getBoardGroup(boardGroupObj.boardGroup);
+			boardGroupItem += getBoardGroup(boardGroupObj.boardGroup);
 			boardContainer.innerHTML = boardGroupItem;
 		},
 		error: function(){
