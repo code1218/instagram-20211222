@@ -3,16 +3,19 @@ const modalContainer = document.querySelector('.modal-container');
 const modalBtns = modalContainer.querySelectorAll('button');
 const settingBtn = document.querySelector('#setting-btn');
 const usernameObj = document.querySelector('#username');
+const boardContainer = document.querySelector('.board-container');
 
 var page = 0;
 var username = usernameObj.value;
 
-window.onscroll = () => {
+/*window.onscroll = () => {
 	console.log('window_scrollTop: ' + $(window).scrollTop());
 	console.log('window_height: ' + $(window).height());
 	console.log('document_height: ' + $(document).height());
 	console.log($(document).height()-$(window).height()-$(window).scrollTop());
-}
+}*/
+
+boardLoad();
 
 function boardLoad() {
 	$.ajax({
@@ -20,54 +23,52 @@ function boardLoad() {
 		url: `/${username}/board?page=${page}`,
 		dataType: "text",
 		success: function(data){
-			let boardList = JSON.parse(data);
-			getBoardItem(boardList);
+			let boardGroupObj = JSON.parse(data);
+			let boardGroupItem = getBoardGroup(boardGroupObj.boardGroup);
+			boardContainer.innerHTML = boardGroupItem;
 		},
 		error: function(){
-			
+			alert('비동기 처리 오류.');
 		}
 	});
 }
 
-function getBoardGroup(boardList) {
-	let boardGroup = `
-		<div class="board-item-group">
-            <div class="board-item">
-                <img src="images/signin_title.PNG" alt="">
+function getBoardList(boardList) {
+	let result = ``;
+	
+	for(let board of boardList) {
+		result += `
+			<div class="board-item">
+				<input type="hidden" id="board_id" value="${board.id}">
+                <img src="/image/${board.board_img}" alt="">
                 <div class="board-item-hover">
                     <div class="board-item-like">
-                        <i class="fas fa-heart"></i><span>91</span>
+                        <i class="fas fa-heart"></i><span>0</span>
                     </div>
                     <div class="board-item-comment">
-                        <i class="fas fa-comment"></i><span>30</span>
+                        <i class="fas fa-comment"></i><span>0</span>
                     </div>
                 </div>
             </div>
-            <div class="board-item">
-                <img src="" alt="">
-                <div class="board-item-hover">
-                    <div class="board-item-like">
-                        <i class="fas fa-heart"></i><span>91</span>
-                    </div>
-                    <div class="board-item-comment">
-                        <i class="fas fa-comment"></i><span>30</span>
-                    </div>
-                </div>
-            </div>
-            <div class="board-item">
-                <img src="" alt="">
-                <div class="board-item-hover">
-                    <div class="board-item-like">
-                        <i class="fas fa-heart"></i><span>91</span>
-                    </div>
-                    <div class="board-item-comment">
-                        <i class="fas fa-comment"></i><span>30</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-	`;
-	return boardGroup;
+		`;
+	}
+	return result;
+}
+
+function getBoardGroup(boardGroup) {
+	let boardGroupHtml = ``;
+	
+	for(let boardList of boardGroup){
+		let boardListHtml = getBoardList(boardList);
+		
+		boardGroupHtml += `
+			<div class="board-item-group">
+            	${boardListHtml}
+        	</div>
+		`;
+	}
+	
+	return boardGroupHtml;
 }
 
 settingBtn.onclick = () => {
