@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -16,6 +17,7 @@ import com.springboot.instagram.domain.board.Board;
 import com.springboot.instagram.domain.board.BoardRepository;
 import com.springboot.instagram.domain.board.ProfileBoard;
 import com.springboot.instagram.web.dto.board.BoardReqDto;
+import com.springboot.instagram.web.dto.profile.ProfileBoardRespDto;
 import com.springboot.instagram.web.dto.profile.ProfileRespDto;
 
 import lombok.RequiredArgsConstructor;
@@ -60,10 +62,29 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public ProfileRespDto getProfileBoard(String username) {
+	public ProfileRespDto getProfileBoardTotalCount(String username) {
 		List<ProfileBoard> boardList = boardRepository.getProfileBoardListByUsername(username);
 		ProfileRespDto profileRespDto = new ProfileRespDto();
 		profileRespDto.setBoardTotalCount(boardList.size());
 		return profileRespDto;
+	}
+	
+	@Override
+	public ProfileBoardRespDto getProfileBoard(String username, int page) {
+		List<ProfileBoard> boardListAll = boardRepository.getProfileBoardListByUsername(username);
+		List<List<ProfileBoard>> boardGroup = new ArrayList<List<ProfileBoard>>();
+		int boardListTotalCount = boardListAll.size();
+		int groupSize = (boardListTotalCount % 3) == 0 ? boardListTotalCount / 3 : (boardListTotalCount / 3) + 1 ;
+		
+		int j = 0;
+		
+		for(int i = 0; i < groupSize; i++) {
+			List<ProfileBoard> boardList = new ArrayList<ProfileBoard>();
+			for(; j < (i+1) * 3 && j < boardListTotalCount; j++) {
+				boardList.add(boardListAll.get(j));
+			}
+			boardGroup.add(boardList);
+		}
+		return new ProfileBoardRespDto(boardGroup);
 	}
 }

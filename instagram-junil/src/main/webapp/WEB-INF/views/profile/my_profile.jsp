@@ -163,6 +163,9 @@
             <button type="button">취소</button>
         </div>
     </div>
+    
+    <input type="hidden" id="username" value="${profileRespDto.username }">
+    
     <script src="/js/my_profile.js"></script>
 </body>
 

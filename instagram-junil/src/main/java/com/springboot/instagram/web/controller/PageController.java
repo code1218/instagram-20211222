@@ -49,7 +49,7 @@ public class PageController {
 	
 	@GetMapping("/{username}")
 	public String profileForm(Model model, @PathVariable String username, @AuthenticationPrincipal PrincipalDetails principalDetails) {
-		ProfileRespDto profileRespDto = boardService.getProfileBoard(username);
+		ProfileRespDto profileRespDto = boardService.getProfileBoardTotalCount(username);
 		if(principalDetails != null && principalDetails.getUser().getUsername().equals(username)) {
 			profileRespDto.setUsername(username);
 			profileRespDto.setProfile_img(principalDetails.getUserDtl().getProfile_img());

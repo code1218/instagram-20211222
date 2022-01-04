@@ -2,8 +2,10 @@ const body = document.querySelector('body');
 const modalContainer = document.querySelector('.modal-container');
 const modalBtns = modalContainer.querySelectorAll('button');
 const settingBtn = document.querySelector('#setting-btn');
+const usernameObj = document.querySelector('#username');
 
 var page = 0;
+var username = usernameObj.value;
 
 window.onscroll = () => {
 	console.log('window_scrollTop: ' + $(window).scrollTop());
@@ -15,7 +17,7 @@ window.onscroll = () => {
 function boardLoad() {
 	$.ajax({
 		type: "get",
-		url: `/board?page=${page}`,
+		url: `/${username}/board?page=${page}`,
 		dataType: "text",
 		success: function(data){
 			let boardList = JSON.parse(data);
@@ -27,7 +29,7 @@ function boardLoad() {
 	});
 }
 
-function getBoardItem(boardList) {
+function getBoardGroup(boardList) {
 	let boardGroup = `
 		<div class="board-item-group">
             <div class="board-item">
