@@ -86,3 +86,23 @@
 .nav-items-profile img {
     max-width: 25px;
 }
+
+.signin-btn {
+	border: 0px;
+	border-radius: 4px;
+	padding: 5px 10px;
+	color: white;
+    font-weight: 500;
+    background-color: #0095f6;
+    cursor: pointer;
+}
+
+.signup-btn {
+	border: 0px;
+	border-radius: 4px;
+	padding: 5px 10px;
+	color: #0095f6;
+    font-weight: 500;
+    background-color: white;
+    cursor: pointer;
+}
