@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<sec:authorize access="isAuthenticated()">
+	<sec:authentication property="principal" var="principal"/>
+</sec:authorize>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -25,8 +31,14 @@
                     <div class="profile-info">
                         <div class="profile-info-top">
                             <h1 class="profile-username">${profileRespDto.username }</h1>
-                            <button type="button" class="profile-edit-btn" onclick="location.href='/accounts/edit'">프로필 편집</button>
-                            <i id="setting-btn" class="fas fa-cog"></i>
+                            <c:choose>
+                            	<c:when test="${empty principal.user }">
+                            		<button type="button" class="logout-follow-btn">팔로우</button>
+                            	</c:when>
+                            	<c:otherwise>
+                            		<button type="button" class="login-follow-btn">팔로우</button>
+                            	</c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="profile-info-middle">
                             <div class="profile-info-middle-item">게시물 <span>${profileRespDto.boardTotalCount }</span></div>
