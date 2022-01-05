@@ -34,6 +34,15 @@
 			bm.update_date desc,
 			bm.id desc;
 	</select>
+	
+	<select id="getBoardById" resultType="com.springboot.instagram.domain.board.Board" parameterType="Integer">
+		select
+			*
+		from
+			board_mst
+		where
+			id = #{boardId};
+	</select>
 </mapper>
 
 

@@ -64,12 +64,71 @@
         </main>
     </section>
     <div class="modal-container">
-        <div class="setting-modal">
-            <button type="button">비밀번호 변경</button>
-            <button type="button">로그아웃</button>
-            <button type="button">취소</button>
+        <i id="close-btn" class="fas fa-times"></i>
+        <div class="board-modal-body">
+            <div class="board-modal-img">
+                <img src="images/signin_title.PNG">
+            </div>
+            <div class="board-modal-section">
+                <div class="board-modal-profile">
+                    <div class="profile-img-border">
+                        <img src="/images/signin_title.PNG">
+                    </div>
+                    <div class="username-lb">
+                        <a href="#">
+                            <h1>junil</h1>
+                        </a>
+                    </div>
+                </div>
+                <div class="board-modal-contents">
+                    <div class="board-modal-content">
+                        <div class="profile-img-border">
+                            <img src="/images/signin_title.PNG">
+                        </div>
+                        <pre><div class="username-lb">
+                                                <a href="#"><h1>junil</h1></a>
+                                            </div>asdfasdfasdfasdfasdf
+                                        asdfasdfasdfasdfasdf
+                                    asdfasdfasdfasdfasdf
+                                asdfasdfasdfasdfasdf
+                            asdfasdfasdfasdfasdf
+                        asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    asdfasdfasdfasdfasdf
+                    </pre>
+                    </div>
+                    <div class="board-modal-comment">
+
+                    </div>
+                </div>
+                <div class="board-modal-items">
+                    <i class="far fa-heart"></i>
+                    <i class="far fa-comment"></i>
+                    <i class="far fa-paper-plane"></i>
+                </div>
+                <div class="board-modal-like-info">
+                    <span>aaaa님 외 55명이 좋아합니다</span>
+                </div>
+                <div class="board-modal-comment-input">
+                    <input type="text">
+                    <button type="button">게시</button>
+                </div>
+            </div>
         </div>
     </div>
+    
     
     <input type="hidden" id="username" value="${profileRespDto.username }">
     <input type="hidden" id="board-total-count" value="${profileRespDto.boardTotalCount }">
