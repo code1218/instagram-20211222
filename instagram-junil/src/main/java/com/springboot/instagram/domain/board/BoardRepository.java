@@ -8,4 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface BoardRepository {
 	public int insertBoard(Board board);
 	public List<ProfileBoard> getProfileBoardListByUsername(String username);
+	public Board getBoardById(int board_id);
 }

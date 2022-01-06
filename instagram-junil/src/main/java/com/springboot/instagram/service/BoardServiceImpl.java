@@ -16,9 +16,12 @@ import com.springboot.instagram.config.auth.PrincipalDetails;
 import com.springboot.instagram.domain.board.Board;
 import com.springboot.instagram.domain.board.BoardRepository;
 import com.springboot.instagram.domain.board.ProfileBoard;
+import com.springboot.instagram.domain.user.User;
+import com.springboot.instagram.domain.user.UserDtl;
+import com.springboot.instagram.domain.user.UserRepository;
 import com.springboot.instagram.web.dto.board.BoardReqDto;
+import com.springboot.instagram.web.dto.board.BoardRespDto;
 import com.springboot.instagram.web.dto.profile.ProfileBoardRespDto;
-import com.springboot.instagram.web.dto.profile.ProfileRespDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -27,7 +30,8 @@ import lombok.RequiredArgsConstructor;
 public class BoardServiceImpl implements BoardService{
 	
 	private final BoardRepository boardRepository;
-
+	private final UserRepository userRepository;
+	
 	@Value("${file.path}")
 	private String filePath;
 	
@@ -87,5 +91,15 @@ public class BoardServiceImpl implements BoardService{
 			boardGroup.add(boardList);
 		}
 		return new ProfileBoardRespDto(boardGroup);
+	}
+	
+	@Override
+	public BoardRespDto getBoard(int boardId) {
+		BoardRespDto boardRespDto = boardRepository.getBoardById(boardId).toBoardRespDto();
+		User userEntity = userRepository.getUserById(boardRespDto.getUserId());
+		UserDtl userDtlEntity = userRepository.getUserDtlById(userEntity.getId());
+		boardRespDto.setUsername(userEntity.getUsername());
+		boardRespDto.setProfileImg(userDtlEntity.getProfile_img());
+		return boardRespDto;
 	}
 }

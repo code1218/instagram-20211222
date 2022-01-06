@@ -110,22 +110,65 @@ modalBtns[1].onclick = () => {
     location.replace('/logout');
 }
 
+function getBoardItem(board){
+	let result = `
+		<div class="board-modal-img">
+            <img class="board-modal-img-preview" src="/image/${board.boardImg }">
+        </div>
+        <div class="board-modal-section">
+            <div class="board-modal-profile">
+                <div class="profile-img-border">
+                    <img src="/image/${board.profileImg }">
+                </div>
+                <div class="username-lb">
+                    <a href="/${board.username }">
+                        <h1>${board.username }</h1>
+                    </a>
+                </div>
+            </div>
+            <div class="board-modal-contents">
+                <div class="board-modal-content">
+                    <div class="profile-img-border">
+                        <img src="/image/${board.profileImg }">
+                    </div>
+                    <pre><div class="username-lb"><a href="/${board.username }"><h1>${board.username }</h1></a></div>${board.boardContent}</pre>
+                </div>
+                <div class="board-modal-comment">
+
+                </div>
+            </div>
+            <div class="board-modal-items">
+                <i class="far fa-heart"></i>
+                <i class="far fa-comment"></i>
+                <i class="far fa-paper-plane"></i>
+            </div>
+            <div class="board-modal-like-info">
+                <span>aaaa님 외 55명이 좋아합니다</span>
+            </div>
+            <div class="board-modal-comment-input">
+                <input type="text">
+                <button type="button">게시</button>
+            </div>
+        </div>
+	`;
+	return result;
+}
+
 function getBoard(i){
 	let boardId = boardItem[i].querySelector('#board_id');
-	alert(boardId.value);
-	/*
 	$.ajax({
 		type: "get",
 		url: `/board/${boardId.value}`,
 		dataType: "text",
 		success: function(data){
-			
+			let board = JSON.parse(data);
+			let boardModalBody = document.querySelector('.board-modal-body');
+			boardModalBody.innerHTML = getBoardItem(board);
 		},
 		error: function(){
 			alert('비동기 처리 오류.');
 		}
 	});
-	*/
 }
 
 function boardItemClick() {

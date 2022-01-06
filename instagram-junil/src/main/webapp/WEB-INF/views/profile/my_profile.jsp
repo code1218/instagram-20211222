@@ -61,44 +61,7 @@
     <div class="modal-container">
         <i id="close-btn" class="fas fa-times"></i>
         <div class="board-modal-body">
-            <div class="board-modal-img">
-                <img class="board-modal-img-preview" src="">
-            </div>
-            <div class="board-modal-section">
-                <div class="board-modal-profile">
-                    <div class="profile-img-border">
-                        <img src="/image/${profileRespDto.profile_img }">
-                    </div>
-                    <div class="username-lb">
-                        <a href="/${profileRespDto.username }">
-                            <h1>${profileRespDto.username }</h1>
-                        </a>
-                    </div>
-                </div>
-                <div class="board-modal-contents">
-                    <div class="board-modal-content">
-                        <div class="profile-img-border">
-                            <img src="/image/${profileRespDto.profile_img }">
-                        </div>
-                        <pre><div class="username-lb"><a href="/${profileRespDto.username }"><h1>${profileRespDto.username }</h1></a></div></pre>
-                    </div>
-                    <div class="board-modal-comment">
-
-                    </div>
-                </div>
-                <div class="board-modal-items">
-                    <i class="far fa-heart"></i>
-                    <i class="far fa-comment"></i>
-                    <i class="far fa-paper-plane"></i>
-                </div>
-                <div class="board-modal-like-info">
-                    <span>aaaa님 외 55명이 좋아합니다</span>
-                </div>
-                <div class="board-modal-comment-input">
-                    <input type="text">
-                    <button type="button">게시</button>
-                </div>
-            </div>
+            
         </div>
     </div>
     

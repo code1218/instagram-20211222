@@ -41,7 +41,7 @@
 		from
 			board_mst
 		where
-			id = #{boardId};
+			id = #{board_id};
 	</select>
 </mapper>
 

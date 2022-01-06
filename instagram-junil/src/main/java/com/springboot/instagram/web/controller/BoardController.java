@@ -25,7 +25,6 @@ public class BoardController {
 	
 	@GetMapping("/board/{boardId}")
 	public Object getBoard(@PathVariable int boardId) {
-		
-		return null;
+		return boardService.getBoard(boardId);
 	}
 }
