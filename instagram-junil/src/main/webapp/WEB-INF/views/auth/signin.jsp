@@ -41,7 +41,10 @@
                                 <div class="hr-sect"><span>또는</span></div>
                             </div>
                             <div class="si-item">
-                                <a href="#" class="si-facebook">
+                                <a href="/oauth2/authorization/naver" class="si-facebook">
+                                    <i class="fab fa-facebook-square"></i> <span>Facebook으로 로그인</span>
+                                </a>
+                                <a href="/oauth2/authorization/google" class="si-facebook">
                                     <i class="fab fa-facebook-square"></i> <span>Facebook으로 로그인</span>
                                 </a>
                             </div>
