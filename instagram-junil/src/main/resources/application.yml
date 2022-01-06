@@ -16,6 +16,7 @@ spring:  mvc:    view:      prefix: /WEB-INF/views/
             client-secret: 21zyg4hf9y
             scope:            - email
             - name
+            - mobile
             client-name: Naver
             authorization-grant-type: authorization_code
             redirect-uri: http://localhost:8000/login/oauth2/code/naver
