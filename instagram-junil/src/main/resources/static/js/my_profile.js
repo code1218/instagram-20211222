@@ -87,20 +87,24 @@ settingBtn.onclick = () => {
     }
 }
 
-modalContainer[0].onclick = () => {
-    modalContainer[0].classList.toggle('show');
-
-    if (!modalContainer[0].classList.contains('show')) {
-        body.style.overflow = 'auto';
-    }
+modalContainer[0].onclick = (event) => {
+	if(event.target == modalContainer[0]){
+		modalContainer[0].classList.toggle('show');
+	
+	    if (!modalContainer[0].classList.contains('show')) {
+	        body.style.overflow = 'auto';
+	    }
+	}
 }
 
-modalContainer[1].onclick = () => {
-    modalContainer[1].classList.toggle('show');
-
-    if (!modalContainer[1].classList.contains('show')) {
-        body.style.overflow = 'auto';
-    }
+modalContainer[1].onclick = (event) => {
+	if(event.target == modalContainer[1]){
+	    modalContainer[1].classList.toggle('show');
+	
+	    if (!modalContainer[1].classList.contains('show')) {
+	        body.style.overflow = 'auto';
+	    }
+	}
 }
 
 modalBtns[0].onclick = () => {

@@ -5,6 +5,7 @@ const usernameObj = document.querySelector('#username');
 const boardContainer = document.querySelector('.board-container');
 const boardTotalCount = document.querySelector('#board-total-count');
 const logoutFollowBtn = document.querySelector('.logout-follow-btn');
+var boardItem = document.querySelectorAll('.board-item');
 
 var page = 0;
 var username = usernameObj.value;
@@ -20,6 +21,16 @@ window.onscroll = () => {
 	}
 }
 
+modalContainer.onclick = (event) => {
+	if(event.target == modalContainer){
+	    modalContainer.classList.toggle('show');
+	
+	    if (!modalContainer.classList.contains('show')) {
+	        body.style.overflow = 'auto';
+	    }
+	}
+}
+
 boardLoad();
 
 function boardLoad() {
@@ -31,6 +42,8 @@ function boardLoad() {
 			let boardGroupObj = JSON.parse(data);
 			boardGroupItem += getBoardGroup(boardGroupObj.boardGroup);
 			boardContainer.innerHTML = boardGroupItem;
+			boardItem = document.querySelectorAll('.board-item');
+			boardItemClick();
 		},
 		error: function(){
 			alert('비동기 처리 오류.');
@@ -76,6 +89,82 @@ function getBoardGroup(boardGroup) {
 	return boardGroupHtml;
 }
 
-logoutFollowBtn.onclick = () => {
-	location.href = '/';
+if(typeof(logoutFollowBtn) != undefined && logoutFollowBtn != null){
+	logoutFollowBtn.onclick = () => {
+		location.href = '/';
+	}
+}
+
+function getBoardItem(board){
+	let result = `
+		<div class="board-modal-img">
+            <img class="board-modal-img-preview" src="/image/${board.boardImg }">
+        </div>
+        <div class="board-modal-section">
+            <div class="board-modal-profile">
+                <div class="profile-img-border">
+                    <img src="/image/${board.profileImg }">
+                </div>
+                <div class="username-lb">
+                    <a href="/${board.username }">
+                        <h1>${board.username }</h1>
+                    </a>
+                </div>
+            </div>
+            <div class="board-modal-contents">
+                <div class="board-modal-content">
+                    <div class="profile-img-border">
+                        <img src="/image/${board.profileImg }">
+                    </div>
+                    <pre><div class="username-lb"><a href="/${board.username }"><h1>${board.username }</h1></a></div>${board.boardContent}</pre>
+                </div>
+                <div class="board-modal-comment">
+
+                </div>
+            </div>
+            <div class="board-modal-items">
+                <i class="far fa-heart"></i>
+                <i class="far fa-comment"></i>
+                <i class="far fa-paper-plane"></i>
+            </div>
+            <div class="board-modal-like-info">
+                <span>aaaa님 외 55명이 좋아합니다</span>
+            </div>
+            <div class="board-modal-comment-input">
+                <input type="text">
+                <button type="button">게시</button>
+            </div>
+        </div>
+	`;
+	return result;
+}
+
+function getBoard(i){
+	let boardId = boardItem[i].querySelector('#board_id');
+	$.ajax({
+		type: "get",
+		url: `/board/${boardId.value}`,
+		dataType: "text",
+		success: function(data){
+			let board = JSON.parse(data);
+			let boardModalBody = document.querySelector('.board-modal-body');
+			boardModalBody.innerHTML = getBoardItem(board);
+		},
+		error: function(){
+			alert('비동기 처리 오류.');
+		}
+	});
+}
+
+function boardItemClick() {
+	for(let i = 0; i < boardItem.length; i++){
+		boardItem[i].onclick = () => {
+			modalContainer.classList.toggle('show');
+		
+		    if (modalContainer.classList.contains('show')) {
+		        body.style.overflow = 'hidden';
+		    }
+		    getBoard(i);
+		}
+	}
 }
