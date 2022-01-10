@@ -45,7 +45,7 @@ public class AccountsServiceImpl implements AccountsService{
 	public void deleteProfileImgFile(PrincipalDetails principalDetails) {
 		String imgUrl = principalDetails.getUserDtl().getProfile_img();
 		System.out.println(imgUrl);
-		if(!imgUrl.equals("profile_img\\default.png")) {
+		if(!imgUrl.equals("profile_img/default.png")) {
 			File file = new File(filePath + imgUrl);
 			if(file.exists()) {
 				file.delete();
@@ -68,7 +68,7 @@ public class AccountsServiceImpl implements AccountsService{
 			profile_img = principalDetails.getUserDtl().getProfile_img();
 		}else {
 			String imageFileName = UUID.randomUUID().toString().replaceAll("-", "") + "_" + profileReqDto.getFile().getOriginalFilename();
-			Path imageFilePath = Paths.get(filePath, "profile_img\\" + imageFileName);
+			Path imageFilePath = Paths.get(filePath, "profile_img/" + imageFileName);
 			
 			File file = new File(filePath + "profile_img");
 			if(!file.exists()) {
@@ -81,7 +81,7 @@ public class AccountsServiceImpl implements AccountsService{
 				e.printStackTrace();
 			}
 			
-			profile_img = "profile_img\\" + imageFileName;
+			profile_img = "profile_img/" + imageFileName;
 			
 			deleteProfileImgFile(principalDetails);
 		}

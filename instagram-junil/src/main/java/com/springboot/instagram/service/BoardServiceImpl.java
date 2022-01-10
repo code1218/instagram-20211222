@@ -38,13 +38,15 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public boolean insertBoard(PrincipalDetails principalDetails, BoardReqDto boardReqDto) {
 		String imgFileName = UUID.randomUUID().toString().replaceAll("-", "") + "_" + boardReqDto.getFile().getOriginalFilename();
-		String boardImg = "board_img\\" + imgFileName;
+		String boardImg = "board_img/" + imgFileName;
 		Path imgFilePath = Paths.get(filePath, boardImg);
 		
 		File file = new File(filePath + "board_img");
 		if(!file.exists()) {
 			file.mkdirs();
 		}
+		
+		System.out.println(imgFileName);
 		
 		try {
 			Files.write(imgFilePath, boardReqDto.getFile().getBytes());
