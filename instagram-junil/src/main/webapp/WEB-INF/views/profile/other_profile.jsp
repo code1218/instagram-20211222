@@ -30,13 +30,14 @@
                     </div>
                     <div class="profile-info">
                         <div class="profile-info-top">
+                        	<input type="hidden" id="user-id" value="${profileRespDto.userId }"> 
                             <h1 class="profile-username">${profileRespDto.username }</h1>
                             <c:choose>
                             	<c:when test="${empty principal.user }">
                             		<button type="button" class="logout-follow-btn">팔로우</button>
                             	</c:when>
                             	<c:otherwise>
-                            		<button type="button" class="login-follow-btn">팔로우</button>
+                            		<button type="button" class="login-follow-btn">${profileRespDto.follow }</button>
                             	</c:otherwise>
                             </c:choose>
                         </div>

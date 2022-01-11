@@ -62,9 +62,8 @@ public class PageController {
 			model.addAttribute("profileRespDto", profileRespDto);
 			return "profile/my_profile";
 		}else {
-			profileRespDto = profileService.getProfile(username);
+			profileRespDto = profileService.getProfile(principalDetails, username);
 			profileRespDto.setBoardTotalCount(boardService.getProfileBoardTotalCount(username));
-			
 			model.addAttribute("profileRespDto", profileRespDto);
 			return "profile/other_profile";
 		}

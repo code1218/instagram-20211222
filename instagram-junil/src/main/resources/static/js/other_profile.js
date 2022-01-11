@@ -6,6 +6,10 @@ const boardContainer = document.querySelector('.board-container');
 const boardTotalCount = document.querySelector('#board-total-count');
 const logoutFollowBtn = document.querySelector('.logout-follow-btn');
 var boardItem = document.querySelectorAll('.board-item');
+const loginFollowBtn = document.querySelector('.login-follow-btn');
+const userIdObj = document.querySelector('#user-id');
+
+var userId = userIdObj.value;
 
 var page = 0;
 var username = usernameObj.value;
@@ -166,5 +170,47 @@ function boardItemClick() {
 		    }
 		    getBoard(i);
 		}
+	}
+}
+
+function follow(){
+	$.ajax({
+		type: 'post',
+		url: `/api/follow/${userId}`,
+		dataType: 'text',
+		success: function(data){
+			if(data == '1'){
+				loginFollowBtn.textContent = '팔로우 취소';
+			}
+		},
+		error: function(){
+			alert('비동기 처리 오류.');
+		}
+	});
+}
+
+function followCancel(){
+	$.ajax({
+		type: 'delete',
+		url: `/api/follow/${userId}`,
+		dataType: 'text',
+		success: function(data){
+			if(data == '1'){
+				loginFollowBtn.textContent = '팔로우';
+			}
+		},
+		error: function(){
+			alert('비동기 처리 오류.');
+		}
+	});
+}
+
+loginFollowBtn.onclick = () => {
+	if(loginFollowBtn.textContent == '팔로우'){
+		// Post -> /api/follow/userId
+		follow();
+	}else {
+		// Delete -> /api/follow/userId
+		followCancel();
 	}
 }

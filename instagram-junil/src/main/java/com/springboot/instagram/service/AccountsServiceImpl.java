@@ -44,7 +44,6 @@ public class AccountsServiceImpl implements AccountsService{
 	
 	public void deleteProfileImgFile(PrincipalDetails principalDetails) {
 		String imgUrl = principalDetails.getUserDtl().getProfile_img();
-		System.out.println(imgUrl);
 		if(!imgUrl.equals("profile_img/default.png")) {
 			File file = new File(filePath + imgUrl);
 			if(file.exists()) {

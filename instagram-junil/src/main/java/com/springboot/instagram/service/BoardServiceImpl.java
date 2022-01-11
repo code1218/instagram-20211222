@@ -46,8 +46,6 @@ public class BoardServiceImpl implements BoardService{
 			file.mkdirs();
 		}
 		
-		System.out.println(imgFileName);
-		
 		try {
 			Files.write(imgFilePath, boardReqDto.getFile().getBytes());
 		} catch (IOException e) {
