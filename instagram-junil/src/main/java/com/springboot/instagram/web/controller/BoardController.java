@@ -4,11 +4,14 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.instagram.config.auth.PrincipalDetails;
+import com.springboot.instagram.domain.board.IndexBoard;
 import com.springboot.instagram.service.BoardService;
 import com.springboot.instagram.web.dto.board.BoardReqDto;
+import com.springboot.instagram.web.dto.board.IndexBoardRespDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -26,5 +29,12 @@ public class BoardController {
 	@GetMapping("/board/{boardId}")
 	public Object getBoard(@PathVariable int boardId) {
 		return boardService.getBoard(boardId);
+	}
+	
+	@GetMapping("/index/board")
+	public Object getIndexBoard(@AuthenticationPrincipal PrincipalDetails principalDetails, @RequestParam int page){
+		IndexBoardRespDto indexBoardRespDto = boardService.getIndexBoardList(principalDetails.getUsername(), page);
+		System.out.println(indexBoardRespDto);
+		return boardService.getIndexBoardList(principalDetails.getUsername(), page);
 	}
 }

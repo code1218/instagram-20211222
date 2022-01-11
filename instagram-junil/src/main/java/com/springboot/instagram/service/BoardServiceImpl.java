@@ -6,6 +6,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
@@ -15,12 +16,14 @@ import org.springframework.stereotype.Service;
 import com.springboot.instagram.config.auth.PrincipalDetails;
 import com.springboot.instagram.domain.board.Board;
 import com.springboot.instagram.domain.board.BoardRepository;
+import com.springboot.instagram.domain.board.IndexBoard;
 import com.springboot.instagram.domain.board.ProfileBoard;
 import com.springboot.instagram.domain.user.User;
 import com.springboot.instagram.domain.user.UserDtl;
 import com.springboot.instagram.domain.user.UserRepository;
 import com.springboot.instagram.web.dto.board.BoardReqDto;
 import com.springboot.instagram.web.dto.board.BoardRespDto;
+import com.springboot.instagram.web.dto.board.IndexBoardRespDto;
 import com.springboot.instagram.web.dto.profile.ProfileBoardRespDto;
 
 import lombok.RequiredArgsConstructor;
@@ -101,5 +104,23 @@ public class BoardServiceImpl implements BoardService{
 		boardRespDto.setUsername(userEntity.getUsername());
 		boardRespDto.setProfileImg(userDtlEntity.getProfile_img());
 		return boardRespDto;
+	}
+
+	@Override
+	public IndexBoardRespDto getIndexBoardList(String username, int page) {
+		List<IndexBoard> indexBoardListAll = boardRepository.getIndexBoardListByUsername(username);
+		for(IndexBoard board : indexBoardListAll) {
+			System.out.println(board);
+		}
+		int indexBoardListTotalCount = indexBoardListAll.size();
+		int startIndex = page * 3;
+		int endIndex = startIndex + 3;
+		List<IndexBoard> indexBoardList = new ArrayList<IndexBoard>();
+		for(int i = startIndex; i < endIndex && i < indexBoardListTotalCount; i++) {
+			indexBoardList.add(indexBoardListAll.get(i));
+		}
+		IndexBoardRespDto indexBoardRespDto = new IndexBoardRespDto();
+		indexBoardRespDto.setIndexBoardList(indexBoardList);
+		return indexBoardRespDto;
 	}
 }
