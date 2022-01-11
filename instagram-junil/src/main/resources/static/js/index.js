@@ -3,10 +3,12 @@ const boardGroup = document.querySelector('.board-group');
 
 var page = 0;
 var boardItem = ``;
+var indexBoardTotalCount = 0;
+
 window.onscroll = () => {
 	let checkNum = $(document).height()-$(window).height()-$(window).scrollTop();
 	
-	if(checkNum < 1 && checkNum > -1 && boardTotal > (page+1)*9) {
+	if(checkNum < 1 && checkNum > -1 && indexBoardTotalCount > (page+1)*3) {
 		page++;
 		boardLoad();
 	}
@@ -23,6 +25,7 @@ function boardLoad() {
 			let boardListObj = JSON.parse(data);
 			boardItem += getBoard(boardListObj.indexBoardList);
 			boardGroup.innerHTML = boardItem;
+			indexBoardTotalCount = parseInt(boardListObj.indexBoardTotalCount);
 		},
 		error: function(){
 			alert('비동기 처리 오류.');

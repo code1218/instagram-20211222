@@ -109,9 +109,6 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public IndexBoardRespDto getIndexBoardList(String username, int page) {
 		List<IndexBoard> indexBoardListAll = boardRepository.getIndexBoardListByUsername(username);
-		for(IndexBoard board : indexBoardListAll) {
-			System.out.println(board);
-		}
 		int indexBoardListTotalCount = indexBoardListAll.size();
 		int startIndex = page * 3;
 		int endIndex = startIndex + 3;
@@ -121,6 +118,7 @@ public class BoardServiceImpl implements BoardService{
 		}
 		IndexBoardRespDto indexBoardRespDto = new IndexBoardRespDto();
 		indexBoardRespDto.setIndexBoardList(indexBoardList);
+		indexBoardRespDto.setIndexBoardTotalCount(indexBoardListTotalCount);
 		return indexBoardRespDto;
 	}
 }

@@ -34,7 +34,6 @@ public class BoardController {
 	@GetMapping("/index/board")
 	public Object getIndexBoard(@AuthenticationPrincipal PrincipalDetails principalDetails, @RequestParam int page){
 		IndexBoardRespDto indexBoardRespDto = boardService.getIndexBoardList(principalDetails.getUsername(), page);
-		System.out.println(indexBoardRespDto);
 		return boardService.getIndexBoardList(principalDetails.getUsername(), page);
 	}
 }
