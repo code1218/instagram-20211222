@@ -10,6 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<link href=”../images/favicon.png” rel=”icon” type=”image/png” />
 	<link rel="stylesheet" href="/css/style.css">
 	<link rel="stylesheet" href="/css/nav.css">
 	<script src="https://kit.fontawesome.com/c3df4d7d1c.js" crossorigin="anonymous"></script>

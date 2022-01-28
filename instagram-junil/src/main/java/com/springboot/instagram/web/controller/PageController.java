@@ -51,6 +51,7 @@ public class PageController {
 	
 	@GetMapping("/{username}")
 	public String profileForm(Model model, @PathVariable String username, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+		System.out.println("호출");
 		ProfileRespDto profileRespDto = null;
 		if(principalDetails != null && principalDetails.getUser().getUsername().equals(username)) {
 			profileRespDto = new ProfileRespDto();
@@ -67,5 +68,15 @@ public class PageController {
 			model.addAttribute("profileRespDto", profileRespDto);
 			return "profile/other_profile";
 		}
+	}
+	
+	@GetMapping("/product")
+	public String productForm() {
+		return "product/product";
+	}
+	
+	@GetMapping("/map")
+	public String mapForm() {
+		return "map/map";
 	}
 }
